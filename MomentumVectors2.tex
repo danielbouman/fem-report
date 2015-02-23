@@ -1,0 +1,22 @@
+\begin{tikzpicture}[
+	level/.style={black,thick},
+    sublevel/.style={black,densely dashed},
+    momentum/.style={black,->,>=stealth'}]
+    
+    % Coordinate system
+    \draw (-1.5,0) -- (1.5,0) node[right] {$x$};
+    \draw (0,-1.5) -- (0,1.5) node[above] {$y$};
+    
+    % define coordinates
+    \coordinate (O) at (0,0);
+    \coordinate (A) at (-1,1);
+    \coordinate (B) at (1,0);
+    
+    % Momentum vectors
+	\draw[momentum] (O) -- (A) node[above left] {$\boldsymbol{p_2}$};
+	\draw[momentum] (O) -- (B) node[below] {$\boldsymbol{p_1}$};
+    
+    % Angle arc
+    \draw (-6mm,0) arc [start angle=0, end angle=-45, radius=-6mm] node[xshift=-0.3cm, yshift=-0.13cm] {$\theta$};
+    
+  \end{tikzpicture}
