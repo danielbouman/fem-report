@@ -1,23 +1,8 @@
 \section{Theory}
-When a positron ($\beta^+$) collides with an electron ($e^-$), which is the antiparticle of a positron, electron-positron annihilation will occur. For collisions at low energy, the most common case involves the creation of two gamma ray photons ($\gamma$):
-\begin{gather}
-e^-+\beta^+=\gamma + \gamma.
-\end{gather} The total process should obey the laws of conservation of energy and momentum, therefore two photons are created as opposed to one photon. For one photon, total momentum and energy cannot be conserved in this process. Assuming that the momentum of the positron and electron combined before the collision is zero, the two photons will have trajectories in exactly opposite directions to conserve momentum. The rest energy of the positron and electron is equally distributed over the two photons, i.e. the photons both have energy $m_0c^2 \approx ~\text{511 keV}$.
-In practice, the momentum of the positron and electron is never zero, resulting in small deviations in the angle between the two photons and the energy of 511 keV. In a dense material, such as aluminium, the positron will lose most of its momentum due to collisions. Thus, assuming that the positron has zero momentum before annihilating with an electron with non-zero momentum $\boldsymbol{p}$, the deviations will be indicative of the momentum of the electron before the collision. 
-From the formula for Fermi-Dirac statistics: 
-\begin{gather}
-f(E) = \frac{1}{e^{\frac{(E-E_F)}{kT}}+1},
-\end{gather} where $f(E)$ is the probability for a fermion to have energy $E$, $E_F$ the Fermi energy, $k$ the Boltzmann constant and $T$ the temperature \footnote{For a derivation, see for example Griffiths' book \emph{Introduction to Quantum Mechanics}, Prentice Hall}. From this equation it follows that there is a maximum energy that can be occupied by the electrons at $T=0~\text{K}$, namely the Fermi energy $E_F$. Energies between 0 and $E_F$ all have an equal chance of being occupied. For $T\approx 300$~K the Fermi energy is still an acceptable measure for the maximum energy of the electrons in metal, since $E_F \gg kT$ when $T=300$~K and $E_F$ is order of magnitude 10~eV, which is an estimate for the Fermi energy in a metal\cite{ashcroft1976solid}. The maximum momentum associated with the Fermi energy is called the Fermi momentum $\boldsymbol{p_F}$ and the length is defined naturally then as $p_F = \sqrt{2mE_F}$.
-\begin{figure}[H]
-\centering
-\resizebox{0.75\columnwidth}{!}{\input{FermiBall}}
-\caption{Infinitesimal slice of a sphere with radius $\boldsymbol{p_F}$}
-\label{fig:FermiBall}
-\end{figure} Let $\boldsymbol{p_e}$ denote the momentum vector of an electron and $\boldsymbol{p_y}$ the y-component of $\boldsymbol{p_e}$. The relation between the difference in the angle and the momentum of the electron can be derived (see appendix \ref{ap:fermi}):
-\begin{gather}\label{eq:theta}
-\theta = \frac{p_y}{m_ec}.
-\end{gather} 
-Since the maximum magnitude of the $\boldsymbol{p_e}$ vector is fixed via the Fermi momentum and the possible directions of $\boldsymbol{p_e}$ are equally distributed over all angles, the total possible $\boldsymbol{p_e}$ vectors are given by a ball with radius $p_F$, see figure \ref{fig:FermiBall}. Assuming that all magnitudes of $p_e$ are equally likely, the chance that positron-electron annihilation will occur with an electron with $\boldsymbol{p_y}$ having a value lying between $p_y$ and $p_y+dy$ is proportional to the volume of the disk-segment between two points $p_y$ and $p_y+dx$. The volume of such a disk-segment is given by $4\pi p_r^2=4\pi (p_F^2-p_y^2)dx$. The chance is thus proportional to $p_F^2-p_y^2$, which forms a parabola. Since this chance is directly proportional to the measured angles, the minimum angle, denoted as the Fermi angle $\theta_{F}$, between two photons will occur when $||\boldsymbol{p_y}||=||\boldsymbol{p_F}||$. Then from equation \ref{eq:theta} it follows that $||\boldsymbol{p_F}||=m_ec\theta_{F}= \sqrt{2m_eE_F}$, and so:
-\begin{gather}
-E_F = \frac{m_ec^2\theta_{F}^2}{2}.
-\end{gather} However, the positrons will also annihilate with bound electrons, resulting in an additional Gaussian distribution in addition to the angle correlation.
+\begin{enumerate}
+\item Symmetries
+\item Minimization problem
+\item Interface between the two materials
+\item Element matrices and vector
+\item Simulation
+\end{enumerate}

@@ -1,5 +1,0 @@
-Since the valence electrons in a metal are completely free to move within but not outside of the material, the valence electrons can be modelled
-by a three-dimensional infinite box of sides $L$. Since the electrons are free to move within the material, $V=0$ inside the box and $V=\infty$ outside. The time-independent Schr\"{o}dinger equation is then:\\
-
-
-
