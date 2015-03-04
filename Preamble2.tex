@@ -84,3 +84,19 @@
 \newenvironment{Figure}
   {\par\medskip\noindent\minipage{\linewidth}}
   {\endminipage\par\medskip}
+
+
+% %% Custom commands
+\renewcommand{\vec}[1]{\mathbf{#1}}
+% \DeclarePairedDelimiter\abs{\lvert}{\rvert}%
+% \DeclarePairedDelimiter\norm{\lVert}{\rVert}%
+% % Swap the definition of \abs* and \norm*, so that \abs
+% % and \norm resizes the size of the brackets, and the 
+% % starred version does not.
+% \makeatletter
+% \let\oldabs\abs
+% \def\abs{\@ifstar{\oldabs}{\oldabs*}}
+% %
+% \let\oldnorm\norm
+% \def\norm{\@ifstar{\oldnorm}{\oldnorm*}}
+% \makeatother
