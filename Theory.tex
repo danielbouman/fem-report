@@ -1,21 +1,21 @@
 \section{Symmetries}
 With the boundary conditions considered, the problem is symmetric about $b/2$. Therefor the problem may be redefined as the left half of the domain, with boundary $\Gamma=\Gamma_1\cup\Gamma_2\cup\Gamma_3\cup\Gamma_4$, see Figure~\ref{fig:domain_new}. \begin{Figure}
- \centering
+ \centerfloat
  \includegraphics[width=0.7\linewidth]{domain_new.eps}
  \captionof{figure}{Newly defined domain $\Omega$.}\label{fig:domain_new}
 \end{Figure} The boundary conditions become:
 \begin{equation}
 \begin{gathered}
-    K\frac{\partial T}{\partial n}\arrowvert_{\Gamma_1\prime} = -\alpha \left(T_w - T_{\infty}\right),\\
-    \frac{\partial T}{\partial n}\arrowvert_{\Gamma_2\prime} = 0,\\
-    \frac{\partial T}{\partial n}\arrowvert_{\Gamma_3\prime} = 0,\\
+    K\left.\frac{\partial T}{\partial n}\right|_{\Gamma_1\prime} = -\alpha \left(T_w - T_{\infty}\right),\\
+    \left.\frac{\partial T}{\partial n}\right|{\Gamma_2\prime} = 0,\\
+    \left.\frac{\partial T}{\partial n}\right|_{\Gamma_3\prime} = 0,\\
     T\arrowvert_{\Gamma_4\prime} = T_0.
 \end{gathered}\label{eq:bc}
 \end{equation}.
 
 
 \section{Minimization problem}
-To derive the minimization problem for Eq. \ref{eq:heat}, theorem 5.8.1 from Numerical Methods in Scientific Computing \cite{kan}. To use this theorem, homogeneous boundary conditions are needed. Define $v=T-w$, where $w$ satisfies (\ref{eq:bc}). $v$ now satifies homogeneous boundary conditions. The operator in this problem is $L=-k\Delta$, and $L(T)=0$. $L$ needs to be self-adjoint, linear and positive over a space $\Sigma$. Where $\Sigma$ is a vector space consisting of all smooth functions satisfying the homogenous boundary conditions. $L$ is linear if $L(\alpha u+\beta v)=\alpha Lu+\beta Lv, \forall\alpha,\beta\in\mathbb{R}$:
+To derive the minimization problem for Eq. \ref{eq:heat}, theorem 5.8.1 from Numerical Methods in Scientific Computing \cite{kan}. To use this theorem, homogeneous boundary conditions are needed. Define $v=T-w$, where $w$ satisfies (\ref{eq:bc}). $v$ now satifies homogeneous boundary conditions. The operator in this problem is $L=-k\Delta$, and $L(T)=0$. To use thereom 5.8.1, $L$ needs to be self-adjoint, linear and positive in $\Sigma$. Where $\Sigma$ is a vector space consisting of all smooth functions satisfying the homogenous boundary conditions. $L$ is linear if $L(\alpha u+\beta v)=\alpha Lu+\beta Lv, \forall\alpha,\beta\in\mathbb{R}$:
 \begin{gather*}
     L(\alpha u+\beta v)\\
     =-\Delta(\alpha u + \beta v)\\
@@ -23,52 +23,69 @@ To derive the minimization problem for Eq. \ref{eq:heat}, theorem 5.8.1 from Num
     = \alpha Lu+\beta Lv.
 \end{gather*}So L is linear.
 
-Operator $L$ is self-adjoint if $\int\displaylimits_\Omega uLv~\text{d}\Omega=\int\displaylimits_\Omega vLu~\text{d}\Omega, \forall u,v\in~\Sigma$:
+Operator $L$ is self-adjoint if $\int\displaylimits_\Omega uLv \mathrm{d}\Omega=\int\displaylimits_\Omega vLu \mathrm{d}\Omega, \forall u,v\in~\Sigma$:
 \begin{gather*}
-    \int\displaylimits_\Omega uLv~\text{d}\Omega = -\int\displaylimits_\Omega u\Delta v~\text{d}\Omega\\
-    =-\int\displaylimits_\Omega \nabla \cdot (u\nabla v) - \nabla u\cdot\nabla v~\text{d}\Omega.
+    \int\displaylimits_\Omega uLv \mathrm{d}\Omega = -\int\displaylimits_\Omega u\Delta v \mathrm{d}\Omega\\
+    =-\int\displaylimits_\Omega \nabla \cdot (u\nabla v) - \nabla u\cdot\nabla v \mathrm{d}\Omega.
 \end{gather*}
 Using Gau\ss's theorem and the boundary conditions (\ref{eq:bc}):
 \begin{gather*}
-    =-\int\displaylimits_{\partial\Omega} u\frac{\partial v}{\partial n}~\text{d}\Gamma + \int\displaylimits_\Omega \nabla u\cdot\nabla v~\text{d}\Omega\\
-    =\int\displaylimits_\Omega \nabla u\cdot \nabla v\text{d}\Omega
+    =-\int\displaylimits_{\partial\Omega} u\frac{\partial v}{\partial n} \mathrm{d}\Gamma + \int\displaylimits_\Omega \nabla u\cdot\nabla v \mathrm{d}\Omega\\
+    =\int\displaylimits_\Omega \nabla u\cdot \nabla v\mathrm{d}\Omega
 \end{gather*}
-The same derivation also holds for $v$ and since $\int\displaylimits_\Omega \nabla u\cdot \nabla v~\text{d}\Omega = \int\displaylimits_\Omega \nabla v\cdot \nabla u~\text{d}\Omega$, $L$ is self-adjoint.
+The same derivation also holds for $v$ and since $\int\displaylimits_\Omega \nabla u\cdot \nabla v \mathrm{d}\Omega = \int\displaylimits_\Omega \nabla v\cdot \nabla u \mathrm{d}\Omega$, $L$ is self-adjoint.
 
-For $L$ to be positive aswell, $\int\displaylimits_\Omega uLu~\text{d}\Omega$ should be greater than or equation to 0, for all $u\in \Sigma$:
+For $L$ to be positive aswell, $\int\displaylimits_\Omega uLu \mathrm{d}\Omega$ should be greater than or equation to 0, for all $u\in \Sigma$:
 \begin{gather*}
-    \int\displaylimits_\Omega uLu~\text{d}\Omega = - \int\displaylimits_\Omega u\Delta v~\text{d}\Omega\\
-    = -\int\displaylimits_\Omega \nabla \cdot(u\nabla u) - \nabla u\cdot\nabla u~\text{d}\Omega
+    \int\displaylimits_\Omega uLu \mathrm{d}\Omega = - \int\displaylimits_\Omega u\Delta v \mathrm{d}\Omega\\
+    = -\int\displaylimits_\Omega \nabla \cdot(u\nabla u) - \nabla u\cdot\nabla u \mathrm{d}\Omega
 \end{gather*} Using Gau\ss's theorem and the boundary conditions (\ref{eq:bc}):
 \begin{gather*}
-    -\int\displaylimits_{\partial\Omega} u\frac{\partial u}{\partial n}~\text{d}\Gamma + \int\displaylimits_{\Omega} |\nabla u|^2~\text{d}\Omega \\
-    =\int\displaylimits_\Omega |\nabla u|^2~\text{d}\Omega \geq 0.
+    -\int\displaylimits_{\partial\Omega} u\frac{\partial u}{\partial n} \mathrm{d}\Gamma + \int\displaylimits_{\Omega} |\nabla u|^2 \mathrm{d}\Omega \\
+    =\int\displaylimits_\Omega |\nabla u|^2 \mathrm{d}\Omega \geq 0.
 \end{gather*} So $L$ is positive.
 
 The minimization problem thus becomes:
 \begin{equation}
-    \min_{v\in\Sigma} F(v)=\frac{1}{2}\int\displaylimits_{\Omega}vLv~\text{d}\Omega + \int\displaylimits_{\Omega}vLw~\text{d}\Omega.
-\end{equation} Since $w$ is unkown, it needs to be removed from the problem.
-
-Subtitude $v=F-w$:
-\begin{equation*}
-F(T)=\frac{1}{2}\int\displaylimits_\Omega(T-w)(LT+Lw)~\text{d}\Omega.
-\end{equation*} $w$ statisfies the boundary conditions, substituting them gives:
+    \min_{v\in\Sigma} F(v)=\frac{1}{2}\int\displaylimits_{\Omega}vLv \mathrm{d}\Omega + \int\displaylimits_{\Omega}vLw \mathrm{d}\Omega.
+\end{equation} Since $w$ is unknown, it needs to be removed from the problem. To do so, we substitute $v=T-w$, where $w$ satisfies the boundary conditions.
 \begin{gather*}
-    F(T) = \frac{1}{2}\int\displaylimits_{\Omega}(T-w)(-k\nabla (T+w))~\text{d}\Omega\\
-    = \frac{1}{2}\int\displaylimits_{\Omega}\nabla\cdot\left[(T-w)\nabla(-k(T+w))\right]~\text{d}\Omega\\
-    - \frac{1}{2}\int\displaylimits_{\Omega}\nabla(T-w)\cdot k\nabla(T+w)~\text{d}\Omega,
+    F(T) = \frac{1}{2}\int\displaylimits_\Omega(T-w)(LT+Lw) \mathrm{d}\Omega\\
+    = \frac{1}{2}\int\displaylimits_{\Omega}(T-w)(-k\nabla (T+w)) \mathrm{d}\Omega\\
+    = \frac{1}{2}\int\displaylimits_{\Omega}\nabla\cdot\left[(T-w)\nabla(-k(T+w))\right] \mathrm{d}\Omega\\
+    - \frac{1}{2}\int\displaylimits_{\Omega}\nabla(T-w)\cdot k\nabla(T+w) \mathrm{d}\Omega,
 \end{gather*}using Gau\ss's theorem:
 \begin{gather*}
-    = -\frac{1}{2}\int\displaylimits_{\partial\Omega}(T-w)k\nabla(T+w)~\text{d}\Omega\\
-    + \frac{1}{2}\int\displaylimits_{\Omega}\nabla(T-w)k\nabla(T+w)~\text{d}\Omega\\
-    = -\frac{1}{2}\int\displaylimits_{\Omega}\nabla\cdot k\nabla T - \nabla W\cdot k\nabla w~\text{d}\Omega\\
-    -\frac{1}{2}\int\displaylimits_{\partial\Omega}(T-w)k\nabla)(T+w)\text{d}\Gamma.
-\end{gather*}Sinse the solution is independent of $w$, it can be left out in the first integral.
+    = -\frac{1}{2}\int\displaylimits_{\partial\Omega}(T-w)k\nabla(T+w) \mathrm{d}\Omega\\
+    + \frac{1}{2}\int\displaylimits_{\Omega}\nabla(T-w)k\nabla(T+w) \mathrm{d}\Omega\\
+    = -\frac{1}{2}\int\displaylimits_{\Omega}\nabla\cdot k\nabla T - \nabla W\cdot k\nabla w \mathrm{d}\Omega\\
+    -\frac{1}{2}\int\displaylimits_{\partial\Omega}(T-w)k\nabla)(T+w)\mathrm{d}\Gamma,
+\end{gather*}since the solution is independent of $w$, it can be left out of the first integral,
 \begin{gather*}
-    = \frac{1}{2}\int\displaylimits_{\Omega}\nabla T\cdot k\nabla T \text{d}\Omega \\
-    -\frac{1}{2}\int\displaylimits_{\partial\Omega}(T-w)k\nabla (T+w)\text{d}\Gamma.
-\end{gather*}
+    = \frac{1}{2}\int\displaylimits_{\Omega}\nabla T\cdot k\nabla T \mathrm{d}\Omega \\
+    -\frac{1}{2}\int\displaylimits_{\partial\Omega}(T-w)k\nabla (T+w)\mathrm{d}\Gamma.
+\end{gather*} The boundary integral splits into four parts, one for each boundary. On $\Gamma_2$ and $\Gamma_4$ the integral vanishes since there $T-w=0$. On $\Gamma_3$ the integral becomes
+\begin{gather*}
+    -\frac{1}{2}\int\displaylimits_{\Gamma_3} T k \frac{\partial(T+w)}{\partial n} - wk\frac{\partial (T+2)}{\partial n}\mathrm{d}\Gamma\\
+    = -\frac{1}{2}\int\displaylimits_{\Gamma_3} T k \frac{\partial w}{\partial n} - w k \frac{\partial w}{\partial n} \mathrm{d}\Gamma,
+\end{gather*} both terms are zero, since $\partial w/\partial n = 0$ on $\Gamma_3$. The Robin boundary condition On $\Gamma_1$ gives the following boundary integral 
+\begin{gather*}
+    -\frac{1}{2}\int\displaylimits_{\Gamma_1} T k \frac{\partial(T+w)}{\partial n} - wk\frac{\partial(T+W)}{\partial n}\mathrm{d}\Gamma,
+\end{gather*} where
+\begin{gather*}
+    k\left.\frac{\partial T}{\partial n}\right|_{\Gamma_1} = \alpha (T_{\infty} - T_w),\\
+    k\left.\frac{\partial w}{\partial n}\right|_{\Gamma_1} = \alpha (T_{\infty} - w|_{\Gamma_1})\\
+    \rightarrow Tk \left.\frac{\partial(T+w)}{\partial n}\right|_{\Gamma_1} = \alpha\left( 2T_w T_{\infty} - T_w^2 - wT_w \right), \\
+    wk \left.\frac{\partial(T+w)}{\partial n}\right|_{\Gamma_1}
+    = \alpha\left( 2w|_{\Gamma_1} T_{\infty} - \alpha w T_w - \alpha w^2|_{\Gamma_1} \right).
+\end{gather*} The terms depending only on $w$, can again be left out, and so the total boundary integral becomes
+\begin{gather*}
+    \frac{\alpha}{2}\int\displaylimits_{\Gamma_1} T^2 - TT_{\infty} \mathrm{d}\Gamma. 
+\end{gather*} Thus the final minimization problem is
+\begin{gather}
+    \min_{T\in\Sigma} F(T)=\frac{k}{2}\int\displaylimits_{\Omega} \left|\nabla T\right|^2 \mathrm{d}\Omega + \alpha \int\displaylimits_{\Gamma_1} \frac{1}{2}T^2 - TT_{\infty} \mathrm{d}\Gamma,
+\label{eq:final}
+\end{gather} where $\Sigma \equiv \{ T~\text{smooth}~|~T|_{\Gamma_4}=T_0 \}$.
 
 \section{Interface between the two materials} 
 
@@ -110,23 +127,23 @@ Since this must hold for all $D \in \sum$, we get that
 %\end{gather*}
 
 \section{Element matrices and vector}
-Using Ritz' method: 
+Using Ritz' method: [[more about discretization]]
 \begin{gather*}
     T(x,y) \simeq T_n(x,y)=\sum_{j=1}^n c_j\varphi_j(x,y),\\
     \frac{\partial T_n}{\partial c_i}=\varphi_i(x,y).
-\end{gather*} Filling this in to Eq. \ref{eq:final} gives
+\end{gather*} Filling this into Eq. \ref{eq:final} gives
 \begin{gather*}
-    F(T)\simeq F(T_n) = \int\displaylimits_{\Omega}\frac{1}{2} k \left|\nabla T_n\right|^2~\text{d}\Omega + \\ \frac{1}{2}\alpha\int\displaylimits_{\Gamma_1}T_n^2-T_nT_{\infty}~\text{d}\Gamma = 0.
+    F(T)\simeq F(T_n) = \int\displaylimits_{\Omega}\frac{1}{2} k \left|\nabla T_n\right|^2 \mathrm{d}\Omega + \\ \frac{1}{2}\alpha\int\displaylimits_{\Gamma_1}T_n^2-T_nT_{\infty} \mathrm{d}\Gamma = 0.
 \end{gather*} Differentiating with respect to $c_i$ gives
 \begin{gather*}
-    \frac{\partial F}{\partial c_i} = \int\displaylimits_{\Omega}k\nabla T_n\cdot\nabla\varphi_i~\text{d}\Omega    +\int\displaylimits_{\Gamma_1}T_n\varphi_i-\varphi_iT_{\infty}~\text{d}\Gamma\\
-    = \int\displaylimits_{\Omega}k\nabla\left(\sum_{j=1}^n c_j \varphi_j\right)\cdot \nabla \varphi_i~\text{d}\Omega + \\ \alpha\int\displaylimits_{\Gamma_1} \left(\sum_{j=1}^n c_j \varphi_j\right)\varphi_i - \varphi_i T_{\infty}~\text{d}\Gamma,\\
-    \sum_{j=1}^n c_j \int\displaylimits_{\Omega}k\nabla\varphi_i\cdot \nabla \varphi_i~\text{d}\Omega \\
-    = - \sum_{j=1}^n c_j\left(c_j\alpha\int\displaylimits_{\Gamma_1} \varphi_i \varphi_j~\text{d}\Gamma \right)+\alpha\int\displaylimits_{\Gamma_1}\varphi_i T_{\infty}~\text{d}\Gamma.
+    \frac{\partial F}{\partial c_i} = \int\displaylimits_{\Omega}k\nabla T_n\cdot\nabla\varphi_i \mathrm{d}\Omega    +\int\displaylimits_{\Gamma_1}T_n\varphi_i-\varphi_iT_{\infty} \mathrm{d}\Gamma\\
+    = \int\displaylimits_{\Omega}k\nabla\left(\sum_{j=1}^n c_j \varphi_j\right)\cdot \nabla \varphi_i \mathrm{d}\Omega + \\ \alpha\int\displaylimits_{\Gamma_1} \left(\sum_{j=1}^n c_j \varphi_j\right)\varphi_i - \varphi_i T_{\infty} \mathrm{d}\Gamma,\\
+    \sum_{j=1}^n c_j \int\displaylimits_{\Omega}k\nabla\varphi_i\cdot \nabla \varphi_i \mathrm{d}\Omega \\
+    = - \sum_{j=1}^n c_j\left(c_j\alpha\int\displaylimits_{\Gamma_1} \varphi_i \varphi_j \mathrm{d}\Gamma \right)+\alpha\int\displaylimits_{\Gamma_1}\varphi_i T_{\infty} \mathrm{d}\Gamma.
 \end{gather*} Now the element matrix of an triangular internal element $e_k$ with vertices $\vec{x}_{k_1}$, $\vec{x}_{k_2}$ and $\vec{x}_{k_3}$, becomes
 \begin{gather*}
-    S_{ij}^{e_k} =  k\int\displaylimits_{e_k} \nabla \varphi_j \cdot \nabla \varphi_j~\text{d}\Omega \\
-    = k\left(\beta_i^{e_k} \beta_j^{e_k} \gamma_i^{e_k} \gamma_j^{e_k} \right)\int\displaylimits_{e_k}~\text{d}\Omega.
+    S_{ij}^{e_k} =  k\int\displaylimits_{e_k} \nabla \varphi_j \cdot \nabla \varphi_j \mathrm{d}\Omega \\
+    = k\left(\beta_i^{e_k} \beta_j^{e_k} \gamma_i^{e_k} \gamma_j^{e_k} \right)\int\displaylimits_{e_k} \mathrm{d}\Omega.
 \end{gather*} Using Holand \& Bell's theorem for the integral, this becomes
 \begin{gather}
     S_{ij}^{e_k} = k \frac{|\Delta_{e_k}|}{2}\left(\beta_i^{e_k} \beta_j^{e_k} \gamma_i^{e_k} \gamma_j^{e_k} \right),
@@ -134,14 +151,14 @@ Using Ritz' method:
 
 The element matrix of a boundary element $be_l$ with vertices $\vec{x}_{l_1}$ and $\vec{x}_{l_2}$, becomes
 \begin{gather*}
-    S_{ij}^{be_l} = \alpha \int\displaylimits_{be_l}\varphi_i \varphi_j~\text{d}\Gamma,
+    S_{ij}^{be_l} = \alpha \int\displaylimits_{be_l}\varphi_i \varphi_j \mathrm{d}\Gamma,
 \end{gather*} using Holand \& Bell's theorem:
 \begin{gather}
     S_{ij}^{be_l} = \alpha \frac{\lVert \vec{x}_{l_1} - \vec{x}_{l_2} \rVert}{6} \left( 1 + \delta_{ij} \right).
 \end{gather}
 The element vector of a boundary element $be_l$, becomes
 \begin{gather*}
-    \vec{f}_i^{be_l} = \alpha \int\displaylimits_{be_l}\varphi_i T_{\infty}~\text{d}\Gamma = \alpha T_{\infty} \int\displaylimits_{be_l}\varphi_i~\text{d}\Gamma,
+    \vec{f}_i^{be_l} = \alpha \int\displaylimits_{be_l}\varphi_i T_{\infty} \mathrm{d}\Gamma = \alpha T_{\infty} \int\displaylimits_{be_l}\varphi_i \mathrm{d}\Gamma,
 \end{gather*} again using Holand \& Bell's theorem:
 \begin{gather}
     \vec{f}_i^{be_l} = \alpha T_{\infty} \frac{\lVert \vec{x}_{l_1} - \vec{x}_{l_2} \rVert}{2}.

@@ -1,1 +1,258 @@
-\section{Derivation}
+\section{Simulation source code}
+\subsection{Mesh}\label{ap:mesh}
+\begin{lstlisting}
+# square.msh
+#
+# example file for the generation of elements in a square
+# See the SEPRAN Introduction Section 4.2
+#
+# To run this example use:
+#
+# sepmesh square.msh
+#
+constants
+  reals
+    b = 1			# width of the outer square
+    b_half = b/2		# half width of the outer square
+    b_0 = 0.4			# width of the inner square
+    h = 1			# height of the outer square
+    h_0 = 0.4			# height of the inner square
+    x_inner_left = b/2-b_0/2
+    y_inner_below = h/2-h_0/2
+  integers
+    n = 50			# number of elements Omega_A horizontal direction
+    n_half = n/2		# half number of elements Omega_A horizontal direction
+    m = n*(h/b)			# number of elements Omega_A vertical direction
+    m_half = m/2		# half number of elements Omega_A vertical direction
+    n_0 = n*b_0			# number of elements Omega_B horizontal direction
+    m_0 = m*h_0			# number of elements Omega_B vertical direction
+end
+#
+# Definition of the mesh
+#
+mesh2d
+  # Definition of the coordinates
+  points
+    p1=(0,0)
+    p2=(0,h)
+    p3=(b_half,h)
+    p4=(b_half,y_inner_below+h_0)
+    p5=(x_inner_left,y_inner_below+h_0)
+    p6=(x_inner_left,y_inner_below)
+    p7=(b_half,y_inner_below)
+    p8=(b_half,0)
+  
+  # Definition of the curves  
+  curves
+    # Boundary curves
+    c1 = line ( p1,p2,nelm = m )
+    c2 = line ( p2,p3,nelm = n_half )
+    c3 = line ( p3,p4,nelm = (m-m_0)/2 )
+    c4 = line ( p4,p5,nelm = n_0/2 ) 
+    c5 = line ( p5,p6,nelm = m_0 )
+    c6 = line ( p6,p7,nelm = n_0/2 )
+    c7 = line ( p7,p8,nelm = (m-m_0)/2 )
+    c8 = line ( p8,p1,nelm = n_half )
+    c9 = line ( p7,p4,nelm = m_0 )
+    
+  # Definition of the surface  
+  surfaces
+    s1 = triangle 3 (c1,c2,c3,c4,c5,c6,c7,c8) # Omega_A
+    s2 = triangle 3 (c4,c5,c6,c9) # Omega_B
+
+  # Couple each surface to a different element group in order to provide
+  # different properties to the coefficients
+  meshsurf
+      selm1 = s1
+      selm2 = s2
+
+  # Plot the mesh  
+  plot
+end
+\end{lstlisting}
+
+\subsection{Elements subroutine}\label{ap:elem}
+\begin{lstlisting}
+subroutine elemsubr ( npelm, x, y, nunk_pel, elem_mat,  &
+                            elem_vec, elem_mass, prevsolution, itype )
+!
+!                       INPUT / OUTPUT PARAMETERS
+!
+      implicit none
+      integer, intent(in) :: npelm, nunk_pel, itype
+      double precision, intent(in) :: x(1:npelm), y(1:npelm),  &
+                                      prevsolution(1:nunk_pel)
+      double precision, intent(out) :: elem_mat(1:nunk_pel,1:nunk_pel),  &
+                                       elem_vec(1:nunk_pel),  &
+                                       elem_mass(1:nunk_pel)
+
+! **********************************************************************
+!
+!                       LOCAL PARAMETERS
+!
+! ======================================================================
+!     
+      double precision :: beta(1:3), gamma(1:3), delta, T_inf, suv(3,3), k, alpha
+      integer :: i, j
+      
+! ======================================================================
+!
+      T_inf = 0d0			!--- Environment temperature
+      alpha = 10d0			!--- Heat transfer coefficient
+      
+      if ( itype==1 ) then    		!--- Internal element for Omega_A
+
+!--- Heat conductivity
+	k = 0.1d0
+      
+!	  Compute the factors beta, gamma and delta as defined in the NMSC
+	delta = (x(2)-x(1))*(y(3)-y(1))-(y(2)-y(1))*(x(3)-x(1))
+	beta(1) = (y(2)-y(3))/delta
+	beta(2) = (y(3)-y(1))/delta
+	beta(3) = (y(1)-y(2))/delta
+	gamma(1) = (x(3)-x(2))/delta
+	gamma(2) = (x(1)-x(3))/delta
+	gamma(3) = (x(2)-x(1))/delta
+	
+!     --- Fill the element matrix as defined in the Lecture Notes
+
+	do j = 1, 3
+	  do i = 1, 3
+	    elem_mat(i,j) = 0.5d0*k*abs(delta)*(beta(i)*beta(j)+gamma(i)*gamma(j))
+	  end do
+	end do
+	
+!     --- The internal element vector is zero
+  
+	elem_vec(1:3) = 0d0
+	
+      else if ( itype==2 ) then	 	!--- Internal element for Omega_B
+      
+!--- Heat conductivity
+	k = 1d0
+      
+!--- Type = 1: internal element
+!	  Compute the factors beta, gamma and delta as defined in the NMSC
+	delta = (x(2)-x(1))*(y(3)-y(1))-(y(2)-y(1))*(x(3)-x(1))
+	beta(1) = (y(2)-y(3))/delta
+	beta(2) = (y(3)-y(1))/delta
+	beta(3) = (y(1)-y(2))/delta
+	gamma(1) = (x(3)-x(2))/delta
+	gamma(2) = (x(1)-x(3))/delta
+	gamma(3) = (x(2)-x(1))/delta
+	
+!     --- Fill the element matrix as defined in the Lecture Notes
+
+	do j = 1, 3
+	  do i = 1, 3
+	    elem_mat(i,j) = 0.5d0*k*abs(delta)*(beta(i)*beta(j)+gamma(i)*gamma(j))
+	  end do
+	end do
+	
+!     --- The element vector is zero
+  
+	elem_vec(1:3) = 0d0
+	
+	
+      else if ( itype==3 ) then   		!--- Boundary element for Omega_A
+	
+!--- Fill the element matrix
+	suv = 0d0
+	
+	do i = 1, 3
+	  do j = 1,3
+	    suv(i,j) = alpha * abs(x(2)-x(1) + y(1)-y(2))/6
+	  end do
+	end do
+	
+	elem_mat = suv
+	
+	do i = 1,3
+	    elem_mat(i,i) = suv(i,i) * 2d0
+	end do
+	
+!--- Fill the element vector
+
+	elem_vec(1:2) = alpha * T_inf * 0.5d0 * abs(x(2)-x(1) + y(1)-y(2))
+	
+      else if ( itype==4 ) then   		!--- Boundary element for Omega_B
+	
+!--- Fill the element matrix
+	suv = 0d0
+	
+	do i = 1, 3
+	  do j = 1,3
+	    suv(i,j) = alpha * abs(x(2)-x(1) + y(1)-y(2))/6
+	  end do
+	end do
+	
+	elem_mat = suv
+	
+	do i = 1,3
+	    elem_mat(i,i) = suv(i,i) * 2d0
+	end do
+	
+!--- Fill the element vector
+
+	elem_vec(1:2) = alpha * T_inf * 0.5d0 * abs(x(2)-x(1) + y(1)-y(2))
+	
+      end if
+      
+end subroutine elemsubr
+
+\end{lslisting}
+
+\subsection{Problem definition}\label{ap:prb}
+\begin{lstlisting}
+#*****************************************************************************
+#
+# File: lab4-2.prb
+#
+# Usage: sepcompexe < lab4-2.prb
+#
+# It has been supposed that the following actions have been carried out
+# with success:
+#
+# sepmesh lab4-2.msh
+# compile elemsubr.f90
+# seplink sepcompexe
+#*****************************************************************************
+#
+#
+#
+# Problem definition
+#
+problem
+  types					# Define type numbers per element group
+    elgrp1 = (type=1)			# Element group 1: itype = 1
+    elgrp2 = (type=2)			# Element group 2: itype = 2
+  natbouncond				# Define types of natural boundary
+					# conditions
+    bngrp1 = (type=3)			# Boundary element group 1: itype = 3
+    bngrp2 = (type=4)			# Boundary element group 2: itype = 4
+  bounelements				# Define where natural boundary
+					# conditions are present
+  belm1 = curves(c2)			# Boundary element group 1 is
+					# defined on c3
+  essboundcond				# Define where essential boundary
+					# conditions are defined (not there
+					# value)
+	curves(c1)			# Left boundary	
+end
+#
+# Define the structure of the main program
+#
+structure
+  # Define the structure of the large matrix
+  matrix_structure: symmetric 		# a symmetric profile matrix is used
+  
+# Define non-zero essential boundary conditions
+  prescribe_boundary_conditions potential = 1, curves(c1) # T_0 = 1, essential B.C.
+  solve_linear_system, potential
+  print potential
+  plot_contour potential
+plot_coloured_levels potential
+end
+end_of_sepran_input
+
+\end{lstlisting}
