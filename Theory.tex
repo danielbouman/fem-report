@@ -71,6 +71,44 @@ F(T)=\frac{1}{2}\int\displaylimits_\Omega(T-w)(LT+Lw)~\text{d}\Omega.
 \end{gather*}
 
 \section{Interface between the two materials} 
+
+From \ref{eq:final} we have that $T$ minimizes the following function
+
+\begin{gather*}
+F(T) = \frac{1}{2}\int_{\Omega}k\left|\nabla\right|^2\mathrm{d}\Omega + \alpha \int_{\Gamma_1}\left(\frac{1}{2}T^2-TT_{\infty}\right)\mathrm{d}\Gamma\\
+\rightarrow \left.\frac{\mathrm{d}}{\mathrm{d}t}F(T+tD)\right|_{t=0} = 0, \forall D \in \sum_0\\
+\left.\frac{\mathrm{d}}{\mathrm{d}t}F(T+tD)\right|_{t=0} =  \int_{\Omega_A}k_A\nabla D \nabla T \mathrm{d}\Omega\\ + \int_{\Omega_B}k_B\nabla D \nabla T \mathrm{d}\Omega + \alpha \int_{\Gamma_1}\left(DT-DT_{\infty}\right)\mathrm{d}\Gamma\\
+= k_a\int_{\Gamma_{A_{outer}}}D\frac{\partial T}{\partial n}\mathrm{d}\Gamma + k_a\int_{\Gamma_{A_{inner}}}D\frac{\partial T}{\partial n}\mathrm{d}\Gamma - k_a\int_{\Omega_A}D\Delta T \mathrm{d}\Omega \\
++ k_b \int_{k_b}D\frac{\partial T}{\partial n}\mathrm{d}\Gamma - k_b\int_{\Omega_B}D\Delta T \mathrm{d}\Omega + \alpha \int_{\Gamma_1}\left(DT-DT_{\infty}\right)\mathrm{d}\Gamma = 0\\
+k_a\int_{\Gamma_{A_{outer}}}D\frac{\partial T}{\partial n}\mathrm{d}\Gamma = 0\\
+\int_{\Gamma_{A_{inner}}}D\frac{\partial T}{\partial n}\mathrm{d}\Gamma = -\int_{\Gamma_{B}}D\frac{\partial T}{\partial n}\mathrm{d}\Gamma
+\end{gather*}
+\begin{gather*}
+\left(k_a-k_b\right)\int_{\Gamma_{A_{inner}}}D\frac{\partial T}{\partial n}\mathrm{d}\Gamma - k_a\int_{\Omega_A}D\Delta T \mathrm{d}\Omega\\ - k_b\int_{\Omega_B}D\Delta T \mathrm{d}\Omega + \alpha \int_{\Gamma_1}\left(DT-DT_{\infty}\right)\mathrm{d}\Gamma = 0\\
+\end{gather*}
+
+
+The integral over the boundaries of $A$ is just the sum of the inner and outer boundary. The inner boundary of $A$ coincides with the boundary of $B$. Further, if $k_a$ and $k_b$ are known, each of those integrals is completely determined by $D$ and $T$, so 
+
+\begin{gather*}
+k_a\int_{\partial_{A_{inner}}}D\frac{\partial T}{\partial n} \mathrm{d}\Gamma = k_b\int_{\partial_{b}}D\frac{\partial T}{\partial n} \mathrm{d}\Gamma
+\end{gather*}
+
+Since this must hold for all $D \in \sum$, we get that
+
+\begin{gather*}
+\left.k_a\frac{\partial T}{\partial n}\right|_{\partial_{A_{inner}}} = \left.k_b\frac{\partial T}{\partial n}\right|_{\partial B}
+\end{gather*}
+
+%Consider the stationary heat equation, and integrate it over a straight line segment perpendicular to the boundary of $A$ and $B$, from $-\epsilon+x$ to $\epsilon+x$, where $x$ is just a general coordinate.
+%
+%\begin{gather*}
+%-\int_{-\epsilon+x}^{\epsilon+x}\nabla \cdot (k\nabla T)\mathrm{d}x' = -\int_{-\epsilon+x}^{\epsilon+x}\frac{\partial}{\partial n}\cdot (k\frac{\partial}{\partial n} T)\mathrm{d}x'\\
+%\left. k(x)\frac{\partial}{\partial n} T\right|_{\epsilon+x}-\left. k(x)\frac{\partial}{\partial n} T\right|_{-\epsilon+x} = 0\\
+%\lim_{\epsilon \rightarrow 0}\left. k(x)\frac{\partial}{\partial n} T\right|_{\epsilon+x}-\left. k(x)\frac{\partial}{\partial n} T\right|_{-\epsilon+x}\\
+%k_a\frac{\partial T}{\partial n}\left_{\partial A} = k_b\frac{\partial T}{\partial n}\left_{\partial B}
+%\end{gather*}
+
 \section{Element matrices and vector}
 Using Ritz' method: 
 \begin{gather*}
