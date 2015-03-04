@@ -100,3 +100,12 @@
 % \let\oldnorm\norm
 % \def\norm{\@ifstar{\oldnorm}{\oldnorm*}}
 % \makeatother
+
+
+\usepackage{listings}
+\lstset{language=[90]Fortran,
+  basicstyle=\ttfamily,
+  keywordstyle=\color{red},
+  commentstyle=\color{green},
+  morecomment=[l]{\#}% Comment #
+}
