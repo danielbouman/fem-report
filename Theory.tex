@@ -61,7 +61,7 @@ The minimization problem thus becomes:
     = -\frac{1}{2}\int\displaylimits_{\Omega}\nabla\cdot k\nabla T - \nabla w\cdot k\nabla w \mathrm{d}\Omega\\
     -\frac{1}{2}\int\displaylimits_{\partial\Omega}(T-w)k\nabla(T+w)\mathrm{d}\Gamma,
 \end{gather*}\\
-Since minimizing $T$ is independent of $w$, $w$can be left out of the first integral,
+Since minimizing $T$ is independent of $w$, $w$ can be left out of the first integral,
 \begin{gather*}
     = \frac{1}{2}\int\displaylimits_{\Omega}\nabla T\cdot k\nabla T \mathrm{d}\Omega \\
     -\frac{1}{2}\int\displaylimits_{\partial\Omega}(T-w)k\nabla (T+w)\mathrm{d}\Gamma.
@@ -103,23 +103,14 @@ k_A\int\displaylimits_{\Omega_A}D\Delta T \,\mathrm{d}\Omega + k_B \int\displayl
 -\nabla \cdot (k\nabla T) = 0 \rightarrow -\left.\nabla \cdot (k_a\nabla T)\right|_{\Omega_A}\\
 = -\left.\nabla \cdot (k_b\nabla T)\right|_{\Gamma_B} = 0\\
 k_A\int\displaylimits_{\Gamma_{A_{inner}}}D\frac{\partial T}{\partial n} \,\mathrm{d}\Gamma + k_B\int\displaylimits_{\Gamma_{B}}D\frac{\partial T}{\partial n} \,\mathrm{d}\Gamma = 0\\
-k_A\int\displaylimits_{\Gamma_{A_{inner}}}D\frac{\partial T}{\partial n} \,\mathrm{d}\Gamma - k_B\int\displaylimits_{\Gamma_{B}}D\frac{\partial T}{\partial n} \,\mathrm{d}\Gamma = 0.\\
+-k_A\int\displaylimits_{\Gamma_{B}}D\frac{\partial T}{\partial n} \,\mathrm{d}\Gamma + k_B\int\displaylimits_{\Gamma_{B}}D\frac{\partial T}{\partial n} \,\mathrm{d}\Gamma = 0.\\
 \end{gather*}
 
-Where in the last line the direction of the integral was reversed. Since this must hold for all $D \in \Sigma$, we get that
+Since this must hold for all $D \in \Sigma$, we get that
 
 \begin{gather*}
 \left.k_a\frac{\partial T}{\partial n}\right|_{\partial_{A}} = \left.k_b\frac{\partial T}{\partial n}\right|_{\partial_B}
 \end{gather*}
-
-%Consider the stationary heat equation, and integrate it over a straight line segment perpendicular to the boundary of $A$ and $B$, from $-\epsilon+x$ to $\epsilon+x$, where $x$ is just a general coordinate.
-%
-%\begin{gather*}
-%-\int_{-\epsilon+x}^{\epsilon+x}\nabla \cdot (k\nabla T)\mathrm{d}x' = -\int_{-\epsilon+x}^{\epsilon+x}\frac{\partial}{\partial n}\cdot (k\frac{\partial}{\partial n} T)\mathrm{d}x'\\
-%\left. k(x)\frac{\partial}{\partial n} T\right|_{\epsilon+x}-\left. k(x)\frac{\partial}{\partial n} T\right|_{-\epsilon+x} = 0\\
-%\lim_{\epsilon \rightarrow 0}\left. k(x)\frac{\partial}{\partial n} T\right|_{\epsilon+x}-\left. k(x)\frac{\partial}{\partial n} T\right|_{-\epsilon+x}\\
-%k_a\frac{\partial T}{\partial n}\left_{\partial A} = k_b\frac{\partial T}{\partial n}\left_{\partial B}
-%\end{gather*}
 
 \section{Element matrices and vector}\label{sec:elem}
 The minimization problem \ref{eq:final} is discretized using Ritz' method:
@@ -142,7 +133,7 @@ The minimization problem \ref{eq:final} is discretized using Ritz' method:
 \end{gather*} Using Holand \& Bell's theorem for the integral, this becomes
 \begin{gather}
     S_{ij}^{e_k} = k \frac{|\Delta_{e_k}|}{2}\left(\beta_i^{e_k} \beta_j^{e_k} \gamma_i^{e_k} \gamma_j^{e_k} \right),
-\end{gather} where $\frac{|\Delta_{e_k}|}{2}$ is the surface of the element.
+\end{gather} where $ \left|\Delta_{e_k}\right| / 2$ is the surface of the element.
 
 The element matrix of a boundary element $be_l$ with vertices $\vec{x}_{l_1}$ and $\vec{x}_{l_2}$, becomes
 \begin{gather*}
