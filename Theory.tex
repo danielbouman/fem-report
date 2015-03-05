@@ -96,9 +96,9 @@ F(T) = \frac{1}{2}\int\displaylimits_{\Omega}k\left|\nabla\right|^2\mathrm{d}\Om
 \rightarrow \left.\frac{\mathrm{d}}{\mathrm{d}t}F(T+tD)\right|_{t=0} = 0, \forall D \in \Sigma_0\\
 \left.\frac{\mathrm{d}}{\mathrm{d}t}F(T+tD)\right|_{t=0} =  \int\displaylimits_{\Omega_A}k_A\nabla D \nabla T \mathrm{d}\Omega\\ + \int\displaylimits_{\Omega_B}k_B\nabla D \nabla T \mathrm{d}\Omega + \alpha \int\displaylimits_{\Gamma_1}\left(DT-DT_{\infty}\right)\mathrm{d}\Gamma\\
 = k_a\int\displaylimits_{\Gamma_{A_{outer}}}D\frac{\partial T}{\partial n}\mathrm{d}\Gamma + k_a\int\displaylimits_{\Gamma_{A_{inner}}}D\frac{\partial T}{\partial n}\mathrm{d}\Gamma - \\
-k_a\int\displaylimits_{\Omega_A}D\Delta T \mathrm{d}\Omega + k_b \int\displaylimits_{k_b}D\frac{\partial T}{\partial n}\mathrm{d}\Gamma \\- k_b\int\displaylimits_{\Omega_B}D\Delta T \mathrm{d}\Omega + \alpha \int\displaylimits_{\Gamma_1}\left(DT-DT_{\infty}\right)\mathrm{d}\Gamma = 0\\
+k_a\int\displaylimits_{\Omega_A}D\Delta T \mathrm{d}\Omega + k_b \int\displaylimits_{\Omega_b}D\frac{\partial T}{\partial n}\mathrm{d}\Gamma \\- k_b\int\displaylimits_{\Omega_B}D\Delta T \mathrm{d}\Omega + \alpha \int\displaylimits_{\Gamma_1}\left(DT-DT_{\infty}\right)\mathrm{d}\Gamma = 0\\
 k_a\int\displaylimits_{\Gamma_{A_{outer}}}D\frac{\partial T}{\partial n}\mathrm{d}\Gamma = 0\\
-\int\displaylimits_{\Gamma_{A_{inner}}}D\frac{\partial T}{\partial n}\mathrm{d}\Gamma = -\int\displaylimits_{\Gamma_{B}}D\frac{\partial T}{\partial n}\mathrm{d}\Gamma
+-\nabla \cdot (k\nabla T) = 0 \rightarrow -\left.\nabla \cdot (k_a\nabla T)\right|_{\Omega_A} = -\left.\nabla \cdot (k_b\nabla T)\right|_{\Omega_B} = 0
 \end{gather*}
 \begin{gather*}
 \left(k_a-k_b\right)\int\displaylimits_{\Gamma_{A_{inner}}}D\frac{\partial T}{\partial n}\mathrm{d}\Gamma - k_a\int\displaylimits_{\Omega_A}D\Delta T \mathrm{d}\Omega\\ - k_b\int\displaylimits_{\Omega_B}D\Delta T \mathrm{d}\Omega + \alpha \int\displaylimits_{\Gamma_1}\left(DT-DT_{\infty}\right)\mathrm{d}\Gamma = 0\\
