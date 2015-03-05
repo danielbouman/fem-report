@@ -1,5 +1,5 @@
 \section{Symmetries}
-With the boundary conditions considered, the problem is symmetric about $b/2$. Therefor the problem may be redefined as the left half of the domain, with boundary $\Gamma=\Gamma_1\cup\Gamma_2\cup\Gamma_3\cup\Gamma_4$, see Figure~\ref{fig:domain_new}. \begin{Figure}
+With the boundary conditions considered, the problem is symmetric about $b/2$. Therefore the problem may be redefined as the left half of the domain, with boundary $\Gamma=\Gamma_1\cup\Gamma_2\cup\Gamma_3\cup\Gamma_4$, see Figure~\ref{fig:domain_new}. \begin{Figure}
  \centerfloat
  \includegraphics[width=0.7\linewidth]{domain_new.eps}
  \captionof{figure}{Newly defined domain $\Omega$.}\label{fig:domain_new}
@@ -15,7 +15,7 @@ With the boundary conditions considered, the problem is symmetric about $b/2$. T
 
 
 \section{Minimization problem}
-To derive the minimization problem for Eq. \ref{eq:heat}, theorem 5.8.1 from Numerical Methods in Scientific Computing \cite{kan}. To use this theorem, homogeneous boundary conditions are needed. Define $v=T-w$, where $w$ satisfies (\ref{eq:bc}). $v$ now satifies homogeneous boundary conditions. The operator in this problem is $L=-k\Delta$, and $L(T)=0$. To use thereom 5.8.1, $L$ needs to be self-adjoint, linear and positive in $\Sigma$. Where $\Sigma$ is a vector space consisting of all smooth functions satisfying the homogenous boundary conditions. $L$ is linear if $L(\alpha u+\beta v)=\alpha Lu+\beta Lv, \forall\alpha,\beta\in\mathbb{R}$:
+To derive the minimization problem for Eq. \ref{eq:heat}, theorem 5.8.1 from Numerical Methods in Scientific Computing \cite{kan}. To use this theorem, homogeneous boundary conditions are needed. Define $v=T-w$, where $w$ satisfies (\ref{eq:bc}). $v$ now satisfies homogeneous boundary conditions. The operator in this problem is $L=-k\Delta$, and $L(T)=0$. To use theorem 5.8.1, $L$ needs to be self-adjoint, linear and positive in $\Sigma$. Where $\Sigma$ is a vector space consisting of all smooth functions satisfying the homogeneous boundary conditions. $L$ is linear if $L(\alpha u+\beta v)=\alpha Lu+\beta Lv, \forall\alpha,\beta\in\mathbb{R}$:
 \begin{gather*}
     L(\alpha u+\beta v)\\
     =-\Delta(\alpha u + \beta v)\\
@@ -35,7 +35,7 @@ Using Gau\ss's theorem and the boundary conditions (\ref{eq:bc}):
 \end{gather*}
 The same derivation also holds for $v$ and since $\int\displaylimits_\Omega \nabla u\cdot \nabla v \mathrm{d}\Omega = \int\displaylimits_\Omega \nabla v\cdot \nabla u \mathrm{d}\Omega$, $L$ is self-adjoint.
 
-For $L$ to be positive aswell, $\int\displaylimits_\Omega uLu \mathrm{d}\Omega$ should be greater than or equation to 0, for all $u\in \Sigma$:
+For $L$ to be positive as well, $\int\displaylimits_\Omega uLu \mathrm{d}\Omega$ should be greater than or equation to 0, for all $u\in \Sigma$:
 \begin{gather*}
     \int\displaylimits_\Omega uLu \mathrm{d}\Omega = - \int\displaylimits_\Omega u\Delta v \mathrm{d}\Omega\\
     = -\int\displaylimits_\Omega \nabla \cdot(u\nabla u) - \nabla u\cdot\nabla u \mathrm{d}\Omega
@@ -93,17 +93,16 @@ From Eq. \ref{eq:final} we have that $T$ minimizes the following function
 
 \begin{gather*}
 F(T) = \frac{1}{2}\int\displaylimits_{\Omega}k\left|\nabla\right|^2\mathrm{d}\Omega + \alpha \int\displaylimits_{\Gamma_1}\left(\frac{1}{2}T^2-TT_{\infty}\right)\mathrm{d}\Gamma\\
-\rightarrow \left.\frac{\mathrm{d}}{\mathrm{d}t}F(T+tD)\right|_{t=0} = 0, \forall D \in \sum_0\\
+\rightarrow \left.\frac{\mathrm{d}}{\mathrm{d}t}F(T+tD)\right|_{t=0} = 0, \forall D \in \Sigma_0\\
 \left.\frac{\mathrm{d}}{\mathrm{d}t}F(T+tD)\right|_{t=0} =  \int\displaylimits_{\Omega_A}k_A\nabla D \nabla T \mathrm{d}\Omega\\ + \int\displaylimits_{\Omega_B}k_B\nabla D \nabla T \mathrm{d}\Omega + \alpha \int\displaylimits_{\Gamma_1}\left(DT-DT_{\infty}\right)\mathrm{d}\Gamma\\
-= k_a\int\displaylimits_{\Gamma_{A_{outer}}}D\frac{\partial T}{\partial n}\mathrm{d}\Gamma + k_a\int\displaylimits_{\Gamma_{A_{inner}}}D\frac{\partial T}{\partial n}\mathrm{d}\Gamma - k_a\int\displaylimits_{\Omega_A}D\Delta T \mathrm{d}\Omega \\
-+ k_b \int\displaylimits_{k_b}D\frac{\partial T}{\partial n}\mathrm{d}\Gamma - k_b\int\displaylimits_{\Omega_B}D\Delta T \mathrm{d}\Omega + \alpha \int\displaylimits_{\Gamma_1}\left(DT-DT_{\infty}\right)\mathrm{d}\Gamma = 0\\
+= k_a\int\displaylimits_{\Gamma_{A_{outer}}}D\frac{\partial T}{\partial n}\mathrm{d}\Gamma + k_a\int\displaylimits_{\Gamma_{A_{inner}}}D\frac{\partial T}{\partial n}\mathrm{d}\Gamma - \\
+k_a\int\displaylimits_{\Omega_A}D\Delta T \mathrm{d}\Omega + k_b \int\displaylimits_{k_b}D\frac{\partial T}{\partial n}\mathrm{d}\Gamma \\- k_b\int\displaylimits_{\Omega_B}D\Delta T \mathrm{d}\Omega + \alpha \int\displaylimits_{\Gamma_1}\left(DT-DT_{\infty}\right)\mathrm{d}\Gamma = 0\\
 k_a\int\displaylimits_{\Gamma_{A_{outer}}}D\frac{\partial T}{\partial n}\mathrm{d}\Gamma = 0\\
 \int\displaylimits_{\Gamma_{A_{inner}}}D\frac{\partial T}{\partial n}\mathrm{d}\Gamma = -\int\displaylimits_{\Gamma_{B}}D\frac{\partial T}{\partial n}\mathrm{d}\Gamma
 \end{gather*}
 \begin{gather*}
 \left(k_a-k_b\right)\int\displaylimits_{\Gamma_{A_{inner}}}D\frac{\partial T}{\partial n}\mathrm{d}\Gamma - k_a\int\displaylimits_{\Omega_A}D\Delta T \mathrm{d}\Omega\\ - k_b\int\displaylimits_{\Omega_B}D\Delta T \mathrm{d}\Omega + \alpha \int\displaylimits_{\Gamma_1}\left(DT-DT_{\infty}\right)\mathrm{d}\Gamma = 0\\
 \end{gather*}
-
 
 The integral over the boundaries of $A$ is just the sum of the inner and outer boundary. The inner boundary of $A$ coincides with the boundary of $B$. Further, if $k_a$ and $k_b$ are known, each of those integrals is completely determined by $D$ and $T$, so 
 
@@ -126,7 +125,7 @@ Since this must hold for all $D \in \sum$, we get that
 %k_a\frac{\partial T}{\partial n}\left_{\partial A} = k_b\frac{\partial T}{\partial n}\left_{\partial B}
 %\end{gather*}
 
-\section{Element matrices and vector}
+\section{Element matrices and vector}\label{sec:elem}
 Using Ritz' method: [[more about discretization]]
 \begin{gather*}
     T(x,y) \simeq T_n(x,y)=\sum_{j=1}^n c_j\varphi_j(x,y),\\
@@ -162,4 +161,5 @@ The element vector of a boundary element $be_l$, becomes
 \end{gather*} again using Holand \& Bell's theorem:
 \begin{gather}
     \vec{f}_i^{be_l} = \alpha T_{\infty} \frac{\lVert \vec{x}_{l_1} - \vec{x}_{l_2} \rVert}{2}.
+    \label{eq:boundary_vector}
 \end{gather}
