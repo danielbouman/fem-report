@@ -89,26 +89,26 @@ The minimization problem thus becomes:
 
 \section{Interface between the two materials} 
 
-From \ref{eq:final} we have that $T$ minimizes the following function
+From Eq. \ref{eq:final} we have that $T$ minimizes the following function
 
 \begin{gather*}
-F(T) = \frac{1}{2}\int_{\Omega}k\left|\nabla\right|^2\mathrm{d}\Omega + \alpha \int_{\Gamma_1}\left(\frac{1}{2}T^2-TT_{\infty}\right)\mathrm{d}\Gamma\\
+F(T) = \frac{1}{2}\int\displaylimits_{\Omega}k\left|\nabla\right|^2\mathrm{d}\Omega + \alpha \int\displaylimits_{\Gamma_1}\left(\frac{1}{2}T^2-TT_{\infty}\right)\mathrm{d}\Gamma\\
 \rightarrow \left.\frac{\mathrm{d}}{\mathrm{d}t}F(T+tD)\right|_{t=0} = 0, \forall D \in \sum_0\\
-\left.\frac{\mathrm{d}}{\mathrm{d}t}F(T+tD)\right|_{t=0} =  \int_{\Omega_A}k_A\nabla D \nabla T \mathrm{d}\Omega\\ + \int_{\Omega_B}k_B\nabla D \nabla T \mathrm{d}\Omega + \alpha \int_{\Gamma_1}\left(DT-DT_{\infty}\right)\mathrm{d}\Gamma\\
-= k_a\int_{\Gamma_{A_{outer}}}D\frac{\partial T}{\partial n}\mathrm{d}\Gamma + k_a\int_{\Gamma_{A_{inner}}}D\frac{\partial T}{\partial n}\mathrm{d}\Gamma - k_a\int_{\Omega_A}D\Delta T \mathrm{d}\Omega \\
-+ k_b \int_{k_b}D\frac{\partial T}{\partial n}\mathrm{d}\Gamma - k_b\int_{\Omega_B}D\Delta T \mathrm{d}\Omega + \alpha \int_{\Gamma_1}\left(DT-DT_{\infty}\right)\mathrm{d}\Gamma = 0\\
-k_a\int_{\Gamma_{A_{outer}}}D\frac{\partial T}{\partial n}\mathrm{d}\Gamma = 0\\
-\int_{\Gamma_{A_{inner}}}D\frac{\partial T}{\partial n}\mathrm{d}\Gamma = -\int_{\Gamma_{B}}D\frac{\partial T}{\partial n}\mathrm{d}\Gamma
+\left.\frac{\mathrm{d}}{\mathrm{d}t}F(T+tD)\right|_{t=0} =  \int\displaylimits_{\Omega_A}k_A\nabla D \nabla T \mathrm{d}\Omega\\ + \int\displaylimits_{\Omega_B}k_B\nabla D \nabla T \mathrm{d}\Omega + \alpha \int\displaylimits_{\Gamma_1}\left(DT-DT_{\infty}\right)\mathrm{d}\Gamma\\
+= k_a\int\displaylimits_{\Gamma_{A_{outer}}}D\frac{\partial T}{\partial n}\mathrm{d}\Gamma + k_a\int\displaylimits_{\Gamma_{A_{inner}}}D\frac{\partial T}{\partial n}\mathrm{d}\Gamma - k_a\int\displaylimits_{\Omega_A}D\Delta T \mathrm{d}\Omega \\
++ k_b \int\displaylimits_{k_b}D\frac{\partial T}{\partial n}\mathrm{d}\Gamma - k_b\int\displaylimits_{\Omega_B}D\Delta T \mathrm{d}\Omega + \alpha \int\displaylimits_{\Gamma_1}\left(DT-DT_{\infty}\right)\mathrm{d}\Gamma = 0\\
+k_a\int\displaylimits_{\Gamma_{A_{outer}}}D\frac{\partial T}{\partial n}\mathrm{d}\Gamma = 0\\
+\int\displaylimits_{\Gamma_{A_{inner}}}D\frac{\partial T}{\partial n}\mathrm{d}\Gamma = -\int\displaylimits_{\Gamma_{B}}D\frac{\partial T}{\partial n}\mathrm{d}\Gamma
 \end{gather*}
 \begin{gather*}
-\left(k_a-k_b\right)\int_{\Gamma_{A_{inner}}}D\frac{\partial T}{\partial n}\mathrm{d}\Gamma - k_a\int_{\Omega_A}D\Delta T \mathrm{d}\Omega\\ - k_b\int_{\Omega_B}D\Delta T \mathrm{d}\Omega + \alpha \int_{\Gamma_1}\left(DT-DT_{\infty}\right)\mathrm{d}\Gamma = 0\\
+\left(k_a-k_b\right)\int\displaylimits_{\Gamma_{A_{inner}}}D\frac{\partial T}{\partial n}\mathrm{d}\Gamma - k_a\int\displaylimits_{\Omega_A}D\Delta T \mathrm{d}\Omega\\ - k_b\int\displaylimits_{\Omega_B}D\Delta T \mathrm{d}\Omega + \alpha \int\displaylimits_{\Gamma_1}\left(DT-DT_{\infty}\right)\mathrm{d}\Gamma = 0\\
 \end{gather*}
 
 
 The integral over the boundaries of $A$ is just the sum of the inner and outer boundary. The inner boundary of $A$ coincides with the boundary of $B$. Further, if $k_a$ and $k_b$ are known, each of those integrals is completely determined by $D$ and $T$, so 
 
 \begin{gather*}
-k_a\int_{\partial_{A_{inner}}}D\frac{\partial T}{\partial n} \mathrm{d}\Gamma = k_b\int_{\partial_{b}}D\frac{\partial T}{\partial n} \mathrm{d}\Gamma
+k_a\int\displaylimits_{\partial_{A_{inner}}}D\frac{\partial T}{\partial n} \mathrm{d}\Gamma = k_b\int\displaylimits_{\partial_{b}}D\frac{\partial T}{\partial n} \mathrm{d}\Gamma
 \end{gather*}
 
 Since this must hold for all $D \in \sum$, we get that
