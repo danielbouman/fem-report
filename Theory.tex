@@ -93,17 +93,17 @@ Since minimizing $T$ is independent of $w$, $w$can be left out of the first inte
 From Eq. \ref{eq:final} we have that $T$ minimizes the following function
 
 \begin{gather*}
-F(T) = \frac{1}{2}\int\displaylimits_{\Omega}k\left|\nabla\right|^2\mathrm{d}\Omega + \alpha \int\displaylimits_{\Gamma_1}\left(\frac{1}{2}T^2-TT_{\infty}\right)\mathrm{d}\Gamma\\
-\rightarrow \left.\frac{\mathrm{d}}{\mathrm{d}t}F(T+tD)\right|_{t=0} = 0, \forall D \in \Sigma\\
-\left.\frac{\mathrm{d}}{\mathrm{d}t}F(T+tD)\right|_{t=0} =  \int\displaylimits_{\Omega_A}k_A\nabla D \nabla T \mathrm{d}\Omega\\ + \int\displaylimits_{\Omega_B}k_B\nabla D \nabla T \mathrm{d}\Omega + \alpha \int\displaylimits_{\Gamma_1}\left(DT-DT_{\infty}\right)\mathrm{d}\Gamma\\
-= k_a\int\displaylimits_{\Gamma_{A_{outer}}}D\frac{\partial T}{\partial n}\mathrm{d}\Gamma + k_a\int\displaylimits_{\Gamma_{A_{inner}}}D\frac{\partial T}{\partial n}\mathrm{d}\Gamma - \\
-k_a\int\displaylimits_{\Omega_A}D\Delta T \mathrm{d}\Omega + k_b \int\displaylimits_{\Omega_b}D\frac{\partial T}{\partial n}\mathrm{d}\Gamma \\- k_b\int\displaylimits_{\Omega_B}D\Delta T \mathrm{d}\Omega + \alpha \int\displaylimits_{\Gamma_1}D\left(T-T_{\infty}\right)\mathrm{d}\Gamma = 0\\
-\left.D\right|_{\Gamma} = 0 \rightarrow k_a\int\displaylimits_{\Gamma_{A_{outer}}}D\frac{\partial T}{\partial n}\mathrm{d}\Gamma = 0,\\
-\int\displaylimits_{\Gamma_1}D\left(T-T_{\infty}\right)\mathrm{d}\Gamma = 0\\
+F(T) = \frac{1}{2}\int\displaylimits_{\Omega}k\left|\nabla\right|^2\,\mathrm{d}\Omega + \alpha \int\displaylimits_{\Gamma_1}\left(\frac{1}{2}T^2-TT_{\infty}\right)\,\mathrm{d}\Gamma\\
+\rightarrow \left.\frac{\,\mathrm{d}}{\,\mathrm{d}t}F(T+tD)\right|_{t=0} = 0, \forall D \in \Sigma\\
+\left.\frac{\,\mathrm{d}}{\,\mathrm{d}t}F(T+tD)\right|_{t=0} =  \int\displaylimits_{\Omega_A}k_A\nabla D \nabla T \,\mathrm{d}\Omega\\ + \int\displaylimits_{\Omega_B}k_B\nabla D \nabla T \,\mathrm{d}\Omega + \alpha \int\displaylimits_{\Gamma_1}\left(DT-DT_{\infty}\right)\,\mathrm{d}\Gamma\\
+= k_A\int\displaylimits_{\Gamma}D\frac{\partial T}{\partial n}\,\mathrm{d}\Gamma + k_A\int\displaylimits_{\Gamma_{A_{inner}}}D\frac{\partial T}{\partial n}\,\mathrm{d}\Gamma - \\
+k_A\int\displaylimits_{\Omega_A}D\Delta T \,\mathrm{d}\Omega + k_B \int\displaylimits_{\Gamma_B}D\frac{\partial T}{\partial n}\,\mathrm{d}\Gamma \\- k_B\int\displaylimits_{\Omega_B}D\Delta T \,\mathrm{d}\Omega + \alpha \int\displaylimits_{\Gamma_1}D\left(T-T_{\infty}\right)\,\mathrm{d}\Gamma = 0\\
+\left.D\right|_{\Gamma} = 0 \rightarrow k_A\int\displaylimits_{\Gamma}D\frac{\partial T}{\partial n}\,\mathrm{d}\Gamma = 0,\\
+\int\displaylimits_{\Gamma_1}D\left(T-T_{\infty}\right)\,\mathrm{d}\Gamma = 0\\
 -\nabla \cdot (k\nabla T) = 0 \rightarrow -\left.\nabla \cdot (k_a\nabla T)\right|_{\Omega_A}\\
-= -\left.\nabla \cdot (k_b\nabla T)\right|_{\Omega_B} = 0\\
-k_a\int\displaylimits_{\partial_{A_{inner}}}D\frac{\partial T}{\partial n} \mathrm{d}\Gamma + k_b\int\displaylimits_{\partial_{B}}D\frac{\partial T}{\partial n} \mathrm{d}\Gamma = 0\\
-k_a\int\displaylimits_{\partial_{A}}D\frac{\partial T}{\partial n} \mathrm{d}\Gamma - k_b\int\displaylimits_{\partial_{B}}D\frac{\partial T}{\partial n} \mathrm{d}\Gamma = 0\\
+= -\left.\nabla \cdot (k_b\nabla T)\right|_{\Gamma_B} = 0\\
+k_A\int\displaylimits_{\Gamma_{A_{inner}}}D\frac{\partial T}{\partial n} \,\mathrm{d}\Gamma + k_B\int\displaylimits_{\Gamma_{B}}D\frac{\partial T}{\partial n} \,\mathrm{d}\Gamma = 0\\
+k_A\int\displaylimits_{\Gamma_{A_{inner}}}D\frac{\partial T}{\partial n} \,\mathrm{d}\Gamma - k_B\int\displaylimits_{\Gamma_{B}}D\frac{\partial T}{\partial n} \,\mathrm{d}\Gamma = 0.\\
 \end{gather*}
 
 Where in the last line the direction of the integral was reversed. Since this must hold for all $D \in \Sigma$, we get that
