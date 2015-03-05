@@ -7,23 +7,40 @@ The problem was solved with the provided SEPRAN package. Using the symmetries of
 \end{Figure}~
 \begin{Figure}
  \centerfloat
- \includegraphics[width=0.6\linewidth, trim=1.5cm 2cm 7.5cm 0.5cm, clip]{filled_mesh.eps}
+ \includegraphics[width=0.56\linewidth, trim=1.5cm 2cm 7.5cm 0.5cm, clip]{filled_mesh.eps}
  \captionof{figure}{Mesh filled with triangular elements.}\label{fig:filled_mesh}
 \end{Figure}
 A subroutine for the elements was then written. The element matrices and vector for the internal and boundary elements from section \ref{sec:elem} are defined here. The internal elements only have an element matrix, the element vector is set to zero. Generally the boundary elements have an element matrix as well as an element vector. In this simulation however $T_{\infty}=0$, so the boundary element vector is effectively also zero. In the subroutine there is a distinction made between $\Omega_A$ (\texttt{itype==1},~\texttt{itype=3}) and $\Omega_B$ (\texttt{itype==1},~\texttt{itype=3}) for the different heat conductivities $k_A$ and $k_B$. The factors $\beta$, $\gamma$ and $\Delta$ are determined as described in \cite{kan}. The full source code is shown in appendix \ref{ap:elem}.
 
 In a separate file the problem is defined. Here the \texttt{itype} numbers are assigned to the element groups and the boundary conditions are defined. The full source code is shown in appendix \ref{ap:prb}.
 
-The solutions of the problem are shown in Figures \ref{fig:coef_0.01} and \ref{fig:coef_10}. 
+The used parameters for the two simulations are shown in table \ref{table:parameters}. The (graphical)solutions of the problem are shown in Figures \ref{fig:coef_0.01} and \ref{fig:coef_10}. 
+
+\begin{center}
+\centerfloat
+\captionof{table}{Used parameters in the simulation}
+\begin{tabular}{lllllllll}
+\hline \hline
+$T_0$ & $T_{\infty}$ & $k_a$ & $k_b$ & $\alpha$ & $h$ & $b$ & $h_0$ & $b_0$\\
+\hline
+1 & 0 & 0.1 & 1 & 0.01 & 1 & 1 & 0.4 & 0.4\\
+1 & 0 & 0.1 & 1 & 10 & 1 & 1 & 0.4 & 0.4\\
+\hline \hline
+\label{table:parameters}
+\end{tabular}
+\vspace{-0.1cm}
+\end{center}
+
 
 \begin{Figure}
  \centerfloat
- \includegraphics[width=0.8\linewidth]{coef_001.eps}
+ \includegraphics[width=0.75\linewidth]{coef_001.eps}
  \captionof{figure}{Heat distribution for $\alpha = 0.01$.}\label{fig:coef_0.01}
 \end{Figure}
 
+
 \begin{Figure}
  \centerfloat
- \includegraphics[width=0.8\linewidth]{coef_10.eps}
+ \includegraphics[width=0.75\linewidth]{coef_10.eps}
  \captionof{figure}{Heat distribution for $\alpha = 10$.}\label{fig:coef_10}
 \end{Figure}
