@@ -93,7 +93,7 @@ From Eq. \ref{eq:final} we have that $T$ minimizes the following function
 
 \begin{gather*}
 F(T) = \frac{1}{2}\int\displaylimits_{\Omega}k\left|\nabla\right|^2\mathrm{d}\Omega + \alpha \int\displaylimits_{\Gamma_1}\left(\frac{1}{2}T^2-TT_{\infty}\right)\mathrm{d}\Gamma\\
-\rightarrow \left.\frac{\mathrm{d}}{\mathrm{d}t}F(T+tD)\right|_{t=0} = 0, \forall D \in \Sigma_0\\
+\rightarrow \left.\frac{\mathrm{d}}{\mathrm{d}t}F(T+tD)\right|_{t=0} = 0, \forall D \in \Sigma\\
 \left.\frac{\mathrm{d}}{\mathrm{d}t}F(T+tD)\right|_{t=0} =  \int\displaylimits_{\Omega_A}k_A\nabla D \nabla T \mathrm{d}\Omega\\ + \int\displaylimits_{\Omega_B}k_B\nabla D \nabla T \mathrm{d}\Omega + \alpha \int\displaylimits_{\Gamma_1}\left(DT-DT_{\infty}\right)\mathrm{d}\Gamma\\
 = k_a\int\displaylimits_{\Gamma_{A_{outer}}}D\frac{\partial T}{\partial n}\mathrm{d}\Gamma + k_a\int\displaylimits_{\Gamma_{A_{inner}}}D\frac{\partial T}{\partial n}\mathrm{d}\Gamma - \\
 k_a\int\displaylimits_{\Omega_A}D\Delta T \mathrm{d}\Omega + k_b \int\displaylimits_{k_b}D\frac{\partial T}{\partial n}\mathrm{d}\Gamma \\- k_b\int\displaylimits_{\Omega_B}D\Delta T \mathrm{d}\Omega + \alpha \int\displaylimits_{\Gamma_1}\left(DT-DT_{\infty}\right)\mathrm{d}\Gamma = 0\\
@@ -110,7 +110,7 @@ The integral over the boundaries of $A$ is just the sum of the inner and outer b
 k_a\int\displaylimits_{\partial_{A_{inner}}}D\frac{\partial T}{\partial n} \mathrm{d}\Gamma = k_b\int\displaylimits_{\partial_{b}}D\frac{\partial T}{\partial n} \mathrm{d}\Gamma
 \end{gather*}
 
-Since this must hold for all $D \in \sum$, we get that
+Since this must hold for all $D \in \Sigma$, we get that
 
 \begin{gather*}
 \left.k_a\frac{\partial T}{\partial n}\right|_{\partial_{A_{inner}}} = \left.k_b\frac{\partial T}{\partial n}\right|_{\partial B}
