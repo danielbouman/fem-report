@@ -15,7 +15,7 @@ With the boundary conditions considered, the problem is symmetric about $b/2$. T
 
 
 \section{Minimization problem}
-To derive the minimization problem for Eq. \ref{eq:heat}, theorem 5.8.1 from Numerical Methods in Scientific Computing \cite{kan}. To use this theorem, homogeneous boundary conditions are needed. Define $v=T-w$, where $w$ satisfies (\ref{eq:bc}). $v$ now satisfies homogeneous boundary conditions. The operator in this problem is $L=-k\Delta$, and $L(T)=0$. To use theorem 5.8.1, $L$ needs to be self-adjoint, linear and positive in $\Sigma$. Where $\Sigma$ is a vector space consisting of all smooth functions satisfying the homogeneous boundary conditions. $L$ is linear if $L(\alpha u+\beta v)=\alpha Lu+\beta Lv, \forall\alpha,\beta\in\mathbb{R}$:
+To derive the minimization problem for Eq. \ref{eq:heat}, theorem 5.8.1 from Numerical Methods in Scientific Computing \cite{kan} was used. This theorem holds only for homogeneous boundary conditions. Define $v=T-w$, where $w$ satisfies (\ref{eq:bc}). $v$ now satisfies homogeneous boundary conditions. The operator in this problem is $L=-k\Delta$, and $L(T)=0$. To use theorem 5.8.1, $L$ needs to be self-adjoint, linear and positive in $\Sigma$. Where $\Sigma$ is a vector space consisting of all smooth functions satisfying the homogeneous boundary conditions. $L$ is linear if $L(\alpha u+\beta v)=\alpha Lu+\beta Lv, \forall\alpha,\beta\in\mathbb{R}$:
 \begin{gather*}
     L(\alpha u+\beta v)\\
     =-\Delta(\alpha u + \beta v)\\
@@ -58,9 +58,10 @@ The minimization problem thus becomes:
 \begin{gather*}
     = -\frac{1}{2}\int\displaylimits_{\partial\Omega}(T-w)k\nabla(T+w) \mathrm{d}\Omega\\
     + \frac{1}{2}\int\displaylimits_{\Omega}\nabla(T-w)k\nabla(T+w) \mathrm{d}\Omega\\
-    = -\frac{1}{2}\int\displaylimits_{\Omega}\nabla\cdot k\nabla T - \nabla W\cdot k\nabla w \mathrm{d}\Omega\\
-    -\frac{1}{2}\int\displaylimits_{\partial\Omega}(T-w)k\nabla)(T+w)\mathrm{d}\Gamma,
-\end{gather*}since the solution is independent of $w$, it can be left out of the first integral,
+    = -\frac{1}{2}\int\displaylimits_{\Omega}\nabla\cdot k\nabla T - \nabla w\cdot k\nabla w \mathrm{d}\Omega\\
+    -\frac{1}{2}\int\displaylimits_{\partial\Omega}(T-w)k\nabla(T+w)\mathrm{d}\Gamma,
+\end{gather*}\\
+Since minimizing $T$ is independent of $w$, $w$can be left out of the first integral,
 \begin{gather*}
     = \frac{1}{2}\int\displaylimits_{\Omega}\nabla T\cdot k\nabla T \mathrm{d}\Omega \\
     -\frac{1}{2}\int\displaylimits_{\partial\Omega}(T-w)k\nabla (T+w)\mathrm{d}\Gamma.
@@ -78,7 +79,7 @@ The minimization problem thus becomes:
     \rightarrow Tk \left.\frac{\partial(T+w)}{\partial n}\right|_{\Gamma_1} = \alpha\left( 2T_w T_{\infty} - T_w^2 - wT_w \right), \\
     wk \left.\frac{\partial(T+w)}{\partial n}\right|_{\Gamma_1}
     = \alpha\left( 2w|_{\Gamma_1} T_{\infty} - \alpha w T_w - \alpha w^2|_{\Gamma_1} \right).
-\end{gather*} The terms depending only on $w$, can again be left out, and so the total boundary integral becomes
+\end{gather*} The terms depending only on $w$ can again be left out. The total boundary integral then becomes
 \begin{gather*}
     \frac{\alpha}{2}\int\displaylimits_{\Gamma_1} T^2 - TT_{\infty} \mathrm{d}\Gamma. 
 \end{gather*} Thus the final minimization problem is
